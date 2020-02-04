@@ -1,0 +1,252 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-02-04T06:43:47.953Z",
+    "end": "2020-02-04T06:44:03.029Z",
+    "duration": 15076,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "220b9c9e-ec72-4579-9fee-ff1143a4b7d3",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b5e39cd5-74c4-469b-8088-9253191be900",
+          "title": "",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "1eee02ba-b71b-46b0-8d05-11b8d0fa1125",
+              "title": "login",
+              "fullFile": "C:\\Users\\lenovo\\Desktop\\mocha-puppeteer\\test\\01_Auth\\login.js",
+              "file": "\\test\\01_Auth\\login.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook",
+                  "fullTitle": " login \"before all\" hook",
+                  "timedOut": false,
+                  "duration": 1279,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "browser = await puppeteer.launch({\n  // headless: false,\n  slowMo: 100\n})\npage = await browser.newPage()",
+                  "err": {},
+                  "uuid": "7ffcff17-805c-4ae8-9ec9-dce673772175",
+                  "parentUUID": "1eee02ba-b71b-46b0-8d05-11b8d0fa1125",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [
+                {
+                  "title": "\"after all\" hook",
+                  "fullTitle": " login \"after all\" hook",
+                  "timedOut": false,
+                  "duration": 267,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await browser.close()",
+                  "err": {},
+                  "uuid": "e02578d0-a90e-4e39-9fcf-6646935ad792",
+                  "parentUUID": "1eee02ba-b71b-46b0-8d05-11b8d0fa1125",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "tests": [
+                {
+                  "title": "Successfully Login",
+                  "fullTitle": " login Successfully Login",
+                  "timedOut": false,
+                  "duration": 12694,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await page.goto('https://devmFore:mccNewdev888@devm.fore.coffee/home')\n  \n  \nawait page.waitForSelector('.coate > div > #menu-area > .menu-open > .open', {visible : true})\nawait page.click('.coate > div > #menu-area > .menu-open > .open')\n\nawait page.waitForSelector('#input-daftar', {visible : true})\nawait page.type('#input-daftar', '0812345678')\n\nawait page.waitForSelector('.menu #menu-button-continue', {visible : true})\nawait page.click('.menu #menu-button-continue')\n\nawait page.waitForSelector('.container-registrasi #register-otp-code', {visible : true})\nawait page.type('.container-registrasi #register-otp-code', '99999')",
+                  "err": {},
+                  "uuid": "f9728f7b-7b07-4dbe-8c6b-082f1e1b79a9",
+                  "parentUUID": "1eee02ba-b71b-46b0-8d05-11b8d0fa1125",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "f9728f7b-7b07-4dbe-8c6b-082f1e1b79a9"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 12694,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 50000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 50000
+        },
+        {
+          "uuid": "bb30baea-4de7-4843-9c59-9da4cd3f80aa",
+          "title": "",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "13218bba-c194-4249-a89f-4933e3f36098",
+              "title": "logout",
+              "fullFile": "C:\\Users\\lenovo\\Desktop\\mocha-puppeteer\\test\\01_Auth\\logout.js",
+              "file": "\\test\\01_Auth\\logout.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook",
+                  "fullTitle": " logout \"before all\" hook",
+                  "timedOut": false,
+                  "duration": 12354,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "browser = await puppeteer.launch({\n  headless: false,\n  slowMo: 100\n})\npage = await browser.newPage()\nawait func.login(page);",
+                  "err": {},
+                  "uuid": "ec7b4c92-427e-43c4-b208-c978b44dd2b6",
+                  "parentUUID": "13218bba-c194-4249-a89f-4933e3f36098",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [
+                {
+                  "title": "\"after all\" hook",
+                  "fullTitle": " logout \"after all\" hook",
+                  "timedOut": false,
+                  "duration": 378,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await browser.close()",
+                  "err": {},
+                  "uuid": "155f8524-844a-4e12-8f2a-39689e30c7e2",
+                  "parentUUID": "13218bba-c194-4249-a89f-4933e3f36098",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "tests": [
+                {
+                  "title": "Successfully Logout",
+                  "fullTitle": " logout Successfully Logout",
+                  "timedOut": false,
+                  "duration": 2081,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "await page.waitForSelector('#menu-area', {visible : true})\nawait page.click('#menu-area')\nawait page.waitForSelector('.button-exit')\nawait page.click('.button-exit')",
+                  "err": {},
+                  "uuid": "b656631c-8e34-46b2-8221-6659dfef61fe",
+                  "parentUUID": "13218bba-c194-4249-a89f-4933e3f36098",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "b656631c-8e34-46b2-8221-6659dfef61fe"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 2081,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 50000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 50000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 50000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {},
+      "version": "4.1.0"
+    }
+  }
+}

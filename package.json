@@ -1,18 +1,17 @@
 {
-  "name": "new-folder",
+  "name": "pptr-testing-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "automated testing with puppeteer",
   "main": "index.js",
   "scripts": {
-    "test": "mocha-parallel-tests --max-parallel 2"
+    "test": "mocha --timeout 30000"
   },
-  "author": "",
+  "author": "QA",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
     "mocha": "^7.0.1",
     "puppeteer": "^2.1.0"
-  },
-  "dependencies": {
-    "mocha-parallel-tests": "^2.2.2"
   }
 }
