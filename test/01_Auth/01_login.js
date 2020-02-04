@@ -5,7 +5,7 @@ const config = require('../../lib/config')
 const { click, typeText, loadUrl, waitForText, pressKey, shouldExist } = require('../../lib/helpers')
 
 
-describe('My first puppeteer test', () => {
+describe('Login ', () => {
     let browser
     let page
 
@@ -32,7 +32,7 @@ describe('My first puppeteer test', () => {
         await loadUrl(page, config.baseUrl)
         
         await shouldExist(page, '#home-button-menu')
-        await click(page, '#asdmenu-area')
+        await click(page, '#menu-area')
         
         await shouldExist(page, '#input-daftar')
         await typeText(page, config.phoneNumber, '#input-daftar')

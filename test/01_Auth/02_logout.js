@@ -36,7 +36,9 @@ describe('My first puppeteer test', () => {
         
         await shouldExist(page, '.button-exit')
         await click(page, '.button-exit')
-        
+           
+        await shouldExist(page, '#home-button-menu')
+
         await shouldExist(page, '#menu-area')
         await click(page, '#menu-area')
 
