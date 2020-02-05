@@ -38,7 +38,23 @@ describe('Store List', () => {
         expect(storeName).to.equal(config.searchStore)
     })
 
-    it.only('Should Redirect to Store Menu Page, When i choose Store', async() => {
+    it('Should Redirect to Store Menu Page, When i choose Store', async() => {
+        await loadUrl(page, `${config.baseUrl}/store-list`)
+        
+        await shouldExist(page, '#search-store')
+        await typeText(page, config.searchStore,'#search-store')
+
+        await shouldExist(page, '#store-select')
+        await click(page, '#store-select')
+        
+        const storeName = await getTextXpath(page, `//p[@class='address-label']`)
+        expect(storeName).to.equal(config.searchStore)
+
+        const url = await page.url()
+        expect(url).to.contain(`${config.baseUrl}/order`)
+    })
+
+    it('Redirect to Store Detail Page, when i click Store Info', async() => {
         await loadUrl(page, `${config.baseUrl}/store-list`)
         
         await shouldExist(page, '#search-store')
@@ -48,30 +64,20 @@ describe('Store List', () => {
         expect(storeName).to.equal(config.searchStore)
 
         await shouldExist(page, '#store-select')
-        await click(page, '#store-select')
+        await click(page, '#store-detail')
         
-        await shouldExist(page, '##espressobase')
+        await shouldExist(page, '#store-button-select')
         const url = await page.url()
-        expect(url).to.contain(`${config.baseUrl}/order`)
+        expect(url).to.contain(`${config.baseUrl}/store-detail`)
     })
 
-    it('Search Result Should Match with Search Input', async() => {
+    it('Should redirect to Home page when i click back button', async() => {
         await loadUrl(page, `${config.baseUrl}/store-list`)
         
         await shouldExist(page, '#search-store')
-        await typeText(page, config.searchStore,'#search-store')
+        await click(page, '#nav-button-back')
         
-        const storeName = await getTextXpath(page, `//p[@class='store-name color-dark-grey']`)
-        expect(storeName).to.equal(config.searchStore)
-    })
-
-    it('Search Result Should Match with Search Input', async() => {
-        await loadUrl(page, `${config.baseUrl}/store-list`)
-        
-        await shouldExist(page, '#search-store')
-        await typeText(page, config.searchStore,'#search-store')
-        
-        const storeName = await getTextXpath(page, `//p[@class='store-name color-dark-grey']`)
-        expect(storeName).to.equal(config.searchStore)
+        const url = await page.url()
+        expect(url).to.contain(`${config.baseUrl}/home`)
     })
 })
