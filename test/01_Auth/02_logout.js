@@ -5,7 +5,7 @@ const config = require('../../lib/config')
 const { login, click, typeText, loadUrl, waitForText, pressKey, shouldExist } = require('../../lib/helpers')
 
 
-describe('My first puppeteer test', () => {
+describe('Logout', () => {
     let browser
     let page
 
@@ -36,18 +36,12 @@ describe('My first puppeteer test', () => {
         
         await shouldExist(page, '.button-exit')
         await click(page, '.button-exit')
-           
+        
         await shouldExist(page, '#home-button-menu')
 
         await shouldExist(page, '#menu-area')
         await click(page, '#menu-area')
 
         await shouldExist(page, '#input-daftar')
-        // await shouldExist(page, '#register-otp-code')
-        // await typeText(page, config.otp, '#register-otp-code')
-
-        // const urlAccountView = await page.url()
-        // expect(urlAccountView).to.contain('otp')
-        // await shouldExist(page, '#register-name-view')
     })
 })

@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const expect = require('chai').expect
 
 const config = require('../../lib/config')
-const { click, typeText, loadUrl, waitForText, pressKey, shouldExist } = require('../../lib/helpers')
+const { logout, click, clearInput, clickXpath, typeText, loadUrl, shouldExist } = require('../../lib/helpers')
 
 
 describe('Login ', () => {
@@ -27,7 +27,7 @@ describe('Login ', () => {
     after(async function(){
         await browser.close()
     })
-
+    
     it('Successfully Login', async() => {
         await loadUrl(page, config.baseUrl)
         
@@ -45,35 +45,52 @@ describe('Login ', () => {
 
         await shouldExist(page, '#register-otp-code')
         await typeText(page, config.otp, '#register-otp-code')
-
+        
         const urlAccountView = await page.url()
         expect(urlAccountView).to.contain('otp')
         await shouldExist(page, '#register-name-view')
+
+        await logout(page)
     })
 
     it('Show Pop up error, when login without phone number', async () => {
-        await page.reload()
-        await shouldExist(page, '#page-content')
+        await loadUrl(page, config.baseUrl)
+        
+        await shouldExist(page, '#home-button-menu')
+        await click(page, '#menu-area')
+        
+        await shouldExist(page, '#input-daftar')
 
-        await waitForText(page, 'body', 'WRITE A POST')
+        await shouldExist(page, '#menu-button-continue')
+        await click(page, '#menu-button-continue')
 
-        const url = await page.url()
-        const title = await page.title()
-
-        expect(url).to.contain('dev')
-        expect(title).to.contains('Community')
+        await clickXpath(page, `//div[@class='modal-container display-block']//button[@id='modal-notif-okay']`)
     })
 
-    it.skip('click method', async () => {
+    it('show Pop up OOps, when input wrong otp 3 times', async () => {
         await loadUrl(page, config.baseUrl)
-        await click(page, '#write-link')
-        await shouldExist(page, '.registration-rainbow')
-    })
+        
+        await shouldExist(page, '#home-button-menu')
+        await click(page, '#menu-area')
+        
+        await shouldExist(page, '#input-daftar')
+        await typeText(page, config.phoneNumber, '#input-daftar')
+        
+        await shouldExist(page, '#menu-button-continue')
+        await click(page, '#menu-button-continue')
 
-    it.skip('submit searchbox', async () => {
-        await loadUrl(page, config.baseUrl)
-        await typeText(page, 'Javascript', '#nav-search')
-        await pressKey(page, 'Enter')
-        await shouldExist(page, '#articles-list')
+        const urlOtp = await page.url()
+        expect(urlOtp).to.contain('otp')
+
+        await shouldExist(page, '#register-otp-code')
+        await typeText(page, '12345', '#register-otp-code')
+        await clearInput(page, '#register-otp-code')
+        await typeText(page, '54321', '#register-otp-code')
+        await clearInput(page, '#register-otp-code')
+        await typeText(page, '12543', '#register-otp-code')
+
+        await clickXpath(page, `//div[@class='modal-container display-block']//button[@id='modal-notif-okay']`)
+
+        await shouldExist(page, '#home-button-menu')
     })
 })
