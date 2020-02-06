@@ -29,45 +29,57 @@ describe('Home page ', () => {
     })
 
     it('Should open Store List, When I click "Pilih Store"', async() => {
+        // Open Home page
         await loadUrl(page, config.baseUrl)
         
+        // CLick Choose Store
         await shouldExist(page, '#home-select-store')
         await click(page, '#home-select-store')
         
         await shouldExist(page, '#search-store')
         
+        // Verify Url
         const url = await page.url()
-        expect(url).to.equal(`${config.baseUrl}/store-list`)
+        expect(url).to.contain(`${config.baseUrl}/store-list`)
     })
 
     it('Should open Store List, When I click Pen Icon', async () => {
+        // Open Home page
         await loadUrl(page, config.baseUrl)
 
+        // Click Pen Icon
         await shouldExist(page, '#home-button-edit')
         await click(page, '#home-button-edit')
 
         await shouldExist(page, '#search-store')
         
+        // Verify Url
         const url = await page.url()
-        expect(url).to.equal(`${config.baseUrl}/store-list`)
+        expect(url).to.contain(`${config.baseUrl}/store-list`)
     })
 
     it('Should Redirect to Play Store, When i click image Get It On Google Play', async () => {
+        // Open Home page
         await loadUrl(page, config.baseUrl)
 
+        // Click image get it on playstore
         await shouldExist(page, '#home-button-edit')
         await clickXpath(page, `//img[@class='icon-google']`)
 
+        // Verify Url
         const url = await page.url()
         expect(url).to.include('fore')
     })
 
-    it('Should Redirect to Play Store, When i click image Download on the App Store', async () => {
+    it('Should Redirect to App Store, When i click image Download on the App Store', async () => {
+        // Open Home page
         await loadUrl(page, config.baseUrl)
 
+        // Click image Download at Apple Store
         await shouldExist(page, '#home-button-edit')
         await clickXpath(page, `//img[@class='icon-apple']`)
 
+        // Verify Url
         const url = await page.url()
         expect(url).to.include('fore')
     })
@@ -77,10 +89,12 @@ describe('Home page ', () => {
         // Open Homepage Fore
         await loadUrl(page, config.baseUrl)
 
+        // Click "Pilih Menu"
         await shouldExist(page, '#home-button-menu')
         await click(page, '#home-button-menu')
 
+        // Verify Pop up   
         const verifyOops = await getTextXpath(page, `//div[@class='modal-container display-block']//div[@class='popup-title alert-type'][contains(text(),'OOPPSS...')]`)
-        expect(verifyOops).to.equal(oops)
+        expect(verifyOops).to.contain(oops)
     });
 })

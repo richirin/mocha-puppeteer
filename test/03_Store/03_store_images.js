@@ -29,14 +29,18 @@ describe('Store Detail', () => {
     })
 
     it('Should Redirect to Store detail Page, when i click Back Button', async() => {
+        // Open Store-images
         await loadUrl(page, `${config.baseUrl}/store-images/64`)
         
+        // CLick Back Button
         await shouldExist(page, '#nav-button-back')
         await click(page, '#nav-button-back')
 
+        // Verify Store
         const storeName = await getTextXpath(page, `//p[@class='store-name']`)
-        expect(storeName).to.equal(config.searchStore)
+        expect(storeName).to.contain(config.searchStore)
 
+        // Verify Url
         const url = await page.url()
         expect(url).to.contain(`${config.baseUrl}/store-detail`)
     })

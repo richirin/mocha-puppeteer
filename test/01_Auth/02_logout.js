@@ -22,26 +22,30 @@ describe('Logout', () => {
             width : config.viewportWidth,
             height : config.viewportHeight,
         })
-        // Login
-        await login(page)
     })
 
     after(async function(){
         await browser.close()
     })
 
-    it('Successfully Logout', async() => {
+    it.skip('Successfully Logout', async() => {
+        // Login
+        await login(page)
+        // Click Menu Bar/Burger Menu
         await shouldExist(page, '#menu-area')
         await click(page, '#menu-area')
         
+        // Click "Keluar" 
         await shouldExist(page, '.button-exit')
         await click(page, '.button-exit')
         
         await shouldExist(page, '#home-button-menu')
 
+        // Click Menu Area
         await shouldExist(page, '#menu-area')
         await click(page, '#menu-area')
 
+        // Verify User was logout
         await shouldExist(page, '#input-daftar')
     })
 })
