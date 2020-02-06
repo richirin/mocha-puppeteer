@@ -104,8 +104,8 @@ describe('Home page ', () => {
         await click(page, '#order-pesan')
 
         // Verify Element
-        await page.focus('#oc-confirm-now')
-        await shouldExist(page, '#oc-confirm-now')
+        await page.focus('#oc-changestore')
+        await shouldExist(page, '#oc-changestore')
 
         const url = await page.url()
         expect(url).to.contain(`${config.baseUrl}/order-confirmation`)

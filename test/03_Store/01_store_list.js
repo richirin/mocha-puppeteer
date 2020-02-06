@@ -55,6 +55,7 @@ describe('Store List', () => {
         await shouldExist(page, '#store-select')
         await click(page, '#store-select')
         
+        await shouldExist(page, '.order-type-detail')
         // Verify Store Name
         const storeName = await getTextXpath(page, `//p[@class='address-label']`)
         expect(storeName).to.contain(config.searchStore)
