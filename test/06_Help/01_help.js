@@ -4,7 +4,7 @@ const config = require('../../lib/config')
 const {scrollDown ,clickXpath , login, click, typeText, loadUrl, waitForText, pressKey, shouldExist, getTextXpath, getText} = require('../../lib/helpers')
 
 
-describe('Store List', () => {
+describe('Help page', () => {
     let browser
     let page
 
@@ -21,7 +21,7 @@ describe('Store List', () => {
             width : config.viewportWidth,
             height : config.viewportHeight,
         })
-        await login(page)
+        await login(page, config.phoneNumber1)
     })
 
     after(async function(){

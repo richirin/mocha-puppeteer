@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const expect = require('chai').expect
 
 const config = require('../../lib/config')
-const { login, click, typeText, loadUrl, waitForText, pressKey, shouldExist } = require('../../lib/helpers')
+const { createNewAccount, click, typeText, loadUrl, waitForText, pressKey, shouldExist } = require('../../lib/helpers')
 
 
 describe('Logout', () => {
@@ -28,9 +28,13 @@ describe('Logout', () => {
         await browser.close()
     })
 
-    it.skip('Successfully Logout', async() => {
-        // Login
-        await login(page)
+    it.only('Successfully Logout', async() => {
+        // Create New Account
+        await createNewAccount(page)
+
+        // Open Homepage
+        await loadUrl(page, config.baseUrl)
+
         // Click Menu Bar/Burger Menu
         await shouldExist(page, '#menu-area')
         await click(page, '#menu-area')

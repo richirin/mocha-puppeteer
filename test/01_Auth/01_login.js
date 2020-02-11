@@ -38,7 +38,7 @@ describe('Login ', () => {
         
         // Input Phone Number
         await shouldExist(page, '#input-daftar')
-        await typeText(page, '082298370644', '#input-daftar')
+        await typeText(page, config.phoneNumber3, '#input-daftar')
         
         // Click Button Continue
         await shouldExist(page, '#menu-button-continue')
@@ -90,7 +90,7 @@ describe('Login ', () => {
         
         // Input Phone Number
         await shouldExist(page, '#input-daftar')
-        await typeText(page, config.phoneNumber, '#input-daftar')
+        await typeText(page, config.phoneNumber3, '#input-daftar')
         
         // Click Button Continue
         await shouldExist(page, '#menu-button-continue')

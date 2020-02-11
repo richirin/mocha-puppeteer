@@ -2,10 +2,10 @@ const puppeteer = require('puppeteer')
 const expect = require('chai').expect
 
 const config = require('../../lib/config')
-const {login, logout, click, clearInput, clickXpath, loadUrl, shouldExist, getTextXpath } = require('../../lib/helpers')
+const {scrollDown, createNewAccount, logout, click, clearInput, clickXpath, loadUrl, shouldExist, getTextXpath } = require('../../lib/helpers')
 
 
-describe('Home page ', () => {
+describe('Menu page ', () => {
     let browser
     let page
 
@@ -28,7 +28,7 @@ describe('Home page ', () => {
         await browser.close()
     })
 
-    it('Success add 1 item into the cart', async() => {
+    it('    ', async() => {
         const product = 'Espresso'
         const quantity =  '1' 
         // Open Home page
@@ -37,6 +37,9 @@ describe('Home page ', () => {
         // Click Product
         await clickXpath(page, `//div[@id='espressobase']//div[4]//div[1]//div[2]//p[1]`)
         
+        // Scroll down
+        await scrollDown(page)
+
         // Click "Masuk Keranjang"
         await shouldExist(page, '#md-counter-order')
         await click(page, '#md-counter-order')
@@ -52,6 +55,12 @@ describe('Home page ', () => {
         const productQuantity = await getTextXpath(page, `//div[@id='order-go-mdedit']//div[@class='menu-count']//div//p[@class='total-menu count'][contains(text(),'1')]`)
         expect(productName).to.equal(product)
         expect(productQuantity).to.equal(quantity)
+
+        // Delete Cart
+        await shouldExist(page, '#order-go-mdedit')
+        await click(page, '#order-go-mdedit')
+        await shouldExist(page, '#mdedit-delete')
+        await click(page, '#mdedit-delete')
     })
 
     it.skip('Success add 2 item into the cart, with different additional', async() => {
@@ -86,8 +95,8 @@ describe('Home page ', () => {
     })
 
     it('Should Redirect to Checkout page when i click pesan has login', async() => {
-        // Login
-        await login(page)
+        // Create New Account
+        await createNewAccount(page)
 
         // Open Menu page
         await loadUrl(page, `${config.baseUrl}/order/64`)
@@ -104,16 +113,17 @@ describe('Home page ', () => {
         await click(page, '#order-pesan')
 
         // Verify Element
-        await page.focus('#oc-changestore')
-        await shouldExist(page, '#oc-changestore')
+        await scrollDown(page)
+        await shouldExist(page, '#oc-confirm-now')
 
+        // Verify Url
         const url = await page.url()
         expect(url).to.contain(`${config.baseUrl}/order-confirmation`)
 
         await logout(page)
     })
 
-    it('Should Redirect to Checkout page when i click pesan without login', async() => {
+    it.skip('Should Redirect to Checkout page when i click pesan without login', async() => {
         // Open Menu page
         await loadUrl(page, `${config.baseUrl}/order/64`)
 
